@@ -11,4 +11,5 @@ public interface IEquipeService {
     public Equipe getById(Integer IdEquipe);
     public List<Equipe> getAllEquipe();
     public void removeEquipe(Integer IdEquipe);
+    //public void faireEvoluerEquipes();
 }

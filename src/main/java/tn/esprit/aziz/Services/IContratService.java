@@ -15,4 +15,5 @@ public interface IContratService {
     public Contrat affectContratToEtudiant (Contrat ce, String nomE,String prenomE);
     Integer nbContratsValides(Date startDate, Date endDate);
     public float getChiffreAffaireEntreDeuxDate(Date startDate, Date endDate);
+    public void retrieveAndUpdateStatusContrat();
 }

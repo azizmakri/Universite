@@ -2,19 +2,26 @@ package tn.esprit.aziz.Services;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import tn.esprit.aziz.Entities.Contrat;
+import tn.esprit.aziz.Entities.Equipe;
 import tn.esprit.aziz.Entities.Etudiant;
 import tn.esprit.aziz.Repositories.ContratRepository;
 import tn.esprit.aziz.Repositories.EtudiantRepository;
+import tn.esprit.aziz.utilities.HelperClass;
 
+import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 @Service
 //@AllArgsConstructor
 //@NoArgsConstructor
+@Slf4j//log lel journalisation
 public class IContratServiceImp implements IContratService{
 
     @Autowired
@@ -123,6 +130,26 @@ public class IContratServiceImp implements IContratService{
 
         }
         return (float) chiffreAffaire;
+    }
+
+    @Transactional
+    public void archiveContrat(){
+        contratRepository.findContratByArchiveIsFalseAndAndDateFinContrat(new Date()).stream()
+                .forEach(contrat -> contrat.setArchive(true));
+    }
+
+    @Scheduled(fixedRate = 60000)
+    @Override
+    public void retrieveAndUpdateStatusContrat() {
+//        List<Contrat> contrats=contratRepository.findContratByArchiveIsFalse();
+//        this.archiveContrat();
+        etudiantRepository.findAll().stream()
+                .map(Etudiant::getEquipes)
+                .flatMap(List::stream)
+                .forEach(equipe -> log.info(equipe.getNomEquipe()));
+
+       /* contrats.stream().filter(contrat -> HelperClass.DiffTwoDate(new Date(),contrat.getDateFinContrat())<16)
+                .forEach(contrat -> log.info("le contrat de l'etudiant"+contrat.getEtudiant().getNomE()));*/
     }
 
 

@@ -33,4 +33,9 @@ public class EquipeController {
     public void removeEquipe(@PathVariable("id") Integer idEquipe){
         iEquipeService.removeEquipe(idEquipe);
     }
+
+  /*  @PutMapping("/evoluerequipe")
+    public void EvoluerEquipe(){
+        iEquipeService.faireEvoluerEquipes();
+    }*/
 }
