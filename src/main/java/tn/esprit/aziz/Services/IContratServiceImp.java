@@ -20,7 +20,6 @@ import java.util.List;
 
 @Service
 //@AllArgsConstructor
-//@NoArgsConstructor
 @Slf4j//log lel journalisation
 public class IContratServiceImp implements IContratService{
 
@@ -55,24 +54,7 @@ public class IContratServiceImp implements IContratService{
 
     @Override
     public Contrat affectContratToEtudiant(Contrat ce, String nomE, String prenomE) {
-        /*
-        List<Etudiant> etudiants =etudiantRepository.findAll();
-        List<Contrat> contrats = null;
-        List<Contrat> contratsValides = null;
-        Etudiant etudiant = null;
-        for (Etudiant i:etudiants) {
-            if (i.getNomE().equals(nomE)&&i.getPrenomE().equals(prenomE)){
-                contrats=i.getContrats();
-                etudiant=i;
-            }
-        }
-        if (!contrats.isEmpty()){
-        for (Contrat ct:contrats) {
-            if (ct.getArchive()==false){
-                contratsValides.add(ct);
-            }
-        }
-        }*/
+
         Etudiant etudiant=etudiantRepository.findByNomEAndPrenomE(nomE,prenomE);
         if (contratRepository.findContratByArchiveIsFalseAndEtudiantNomEAndEtudiantPrenomE(nomE,prenomE)<5){
             etudiant.getContrats().add(ce);

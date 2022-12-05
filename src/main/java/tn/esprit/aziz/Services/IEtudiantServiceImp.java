@@ -19,7 +19,6 @@ import java.util.List;
 
 @Service        //cree moin une instance (bean) de cette classe
 //@AllArgsConstructor
-//@NoArgsConstructor
 public class IEtudiantServiceImp implements IEtudiantService{
 
     @Autowired

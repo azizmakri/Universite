@@ -14,7 +14,7 @@ import java.util.List;
 @Slf4j
 @Aspect
 public class ArroundAspect {
-    /*@Around("execution( * tn.esprit.aziz.Services.IEquipeServiceImp.getAllEquipe(..))")
+    @Around("execution( * tn.esprit.aziz.Services.IEquipeServiceImp.getAllEquipe(..))")
     public List<Object> executionTime(ProceedingJoinPoint pjp) throws Throwable {
 
         StopWatch stopWatch = new StopWatch();
@@ -30,5 +30,5 @@ public class ArroundAspect {
         log.info("The runtime of the method ( "+ methodName + " ) = " + stopWatch.getTotalTimeMillis() + " milliseconds.");
 
         return obj;
-    }*/
+    }
 }
