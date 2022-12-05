@@ -29,7 +29,7 @@ public class Etudiant implements Serializable {
     @ManyToOne//maapedBy dima fil a9al cardinalité exp:Etudiant 1---->* Contrat
     private Departement departement;
 
-    @ManyToMany(mappedBy = "etudiants") //fil ManyToMany may9ala9ch nhotou mappedBy kima nhebou
+    @ManyToMany(mappedBy = "etudiants", fetch = FetchType.EAGER) //fil ManyToMany may9ala9ch nhotou mappedBy kima nhebou
     private List<Equipe> equipes;
 
     @OneToMany (mappedBy = "etudiant")
